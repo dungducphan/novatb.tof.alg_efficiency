@@ -186,8 +186,9 @@ void beamlinereco::CFDHitFinder<T>::SetTimestamp(uint32_t ts) {
 
 template<class T>
 void beamlinereco::CFDHitFinder<T>::FindPedestal() {
+/* 2nd way
     TH1D* pedHist = new TH1D("", "", 10000, 0, 5000);
-    for (size_t i = 0; i < 200; i++) {
+    for (size_t i = 700; i < 1024; i++) {
         pedHist->Fill(_NonfilterWaveformADCNanosec.at(i));
     }
 
@@ -195,8 +196,9 @@ void beamlinereco::CFDHitFinder<T>::FindPedestal() {
     _NoiseSigmaInADC = (T) pedHist->GetStdDev();
 
     delete (pedHist);
+*/
 
-/*
+/* 3rd way*/
     T NoiseBand = 1E9;
     T OldPedestal = 1E9;
     T Pedestal  = 0;
@@ -226,7 +228,7 @@ void beamlinereco::CFDHitFinder<T>::FindPedestal() {
 
     _PedestalInADC = Pedestal;
     _NoiseSigmaInADC = NoiseBand;
-*/
+/**/
 }
 
 template<class T>
